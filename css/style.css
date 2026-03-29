@@ -698,3 +698,148 @@ body {
 .grid-col {
     flex: 1;
 }
+
+
+
+/* --- Стили для страницы Контактов --- */
+
+.contact-section {
+    padding: 60px 0 20px;
+    background-color: #fbfbfb; /* Легкий фон, если нужен контраст, или оставь #ffffff */
+}
+
+.contact-title {
+    font-size: 38px;
+    color: #324950;
+    margin-bottom: 5px;
+    font-weight: 700;
+}
+
+.contact-divider {
+    color: #57984C;
+    letter-spacing: 5px;
+    margin-bottom: 40px;
+    font-size: 20px;
+}
+
+.contact-form {
+    display: flex;
+    gap: 40px;
+    margin-bottom: 60px;
+}
+
+.form-col {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-group label {
+    font-size: 13px;
+    color: #324950;
+    font-weight: 700;
+}
+
+.form-group input, 
+.form-group select, 
+.form-group textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    font-family: 'Roboto Slab', serif;
+    font-size: 14px;
+    color: #324950;
+    outline: none;
+    transition: border-color 0.3s;
+    background-color: #ffffff;
+}
+
+.form-group input:focus, 
+.form-group select:focus, 
+.form-group textarea:focus {
+    border-color: #57984C;
+}
+
+.textarea-group {
+    flex-grow: 1;
+}
+
+.textarea-group textarea {
+    height: 100%;
+    resize: none;
+}
+
+.captcha-group {
+    margin-top: 10px;
+}
+
+.captcha-row {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.captcha-code {
+    font-style: italic;
+    font-weight: 700;
+    font-size: 16px;
+    letter-spacing: 3px;
+    color: #324950;
+}
+
+.captcha-input {
+    width: 140px !important;
+}
+
+.btn-submit {
+    background-color: #57984C;
+    color: #ffffff;
+    border: none;
+    padding: 14px 30px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-weight: 700;
+    font-family: 'Roboto Slab', serif;
+    font-size: 14px;
+    transition: background-color 0.3s;
+    margin-left: auto;
+}
+
+.btn-submit:hover {
+    background-color: #457a3c;
+}
+
+.address-section {
+    text-align: center;
+    padding-bottom: 80px;
+}
+
+.address-title {
+    color: #57984C;
+    font-size: 18px;
+    font-weight: 700;
+    display: inline-block;
+    border-top: 1px solid #57984C;
+    border-bottom: 1px solid #57984C;
+    padding: 8px 0;
+    margin-bottom: 25px;
+}
+
+.address-details p {
+    color: #324950;
+    font-size: 15px;
+    line-height: 1.8;
+    margin: 0;
+}
+
+.address-details .phone-number {
+    color: #57984C;
+}
