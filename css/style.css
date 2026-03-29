@@ -329,6 +329,25 @@ body {
     background-color: #fef0f1; 
 }
 
+a.product-card {
+    text-decoration: none; 
+    display: block;        
+    color: inherit;      
+    transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+
+a.product-card:hover {
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1); 
+    transform: translateY(-5px);           
+}
+
+
+.product-card h3 {
+    color: #57984C; 
+    margin-bottom: 10px;
+    font-weight: 700;
+}
 .tomato-hero {
     height: 500px;
     padding-top: 150px; 
