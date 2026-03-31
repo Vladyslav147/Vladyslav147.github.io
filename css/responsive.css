@@ -1,0 +1,227 @@
+/* --- общий сброс для мобилок --- */
+@media (max-width: 1024px) {
+    .header {
+        position: relative !important; /* перебиваем absolute из основного файла */
+        padding: 10px 0;
+        background: #fff;
+    }
+
+    .header-container {
+        position: relative; /* чтобы меню позиционировалось относительно шапки */
+    }
+
+    .header-right {
+        flex-direction: row !important; /* ставим поиск и бургер в ряд */
+        align-items: center;
+        gap: 15px;
+    }
+
+    .search-box {
+        margin-bottom: 0;
+        width: 150px;
+    }
+
+    /* прячем обычное меню */
+    .nav {
+        display: none; 
+        flex-direction: column;
+        position: absolute;
+        top: 100%; /* выпадает строго под шапкой */
+        left: 0;
+        width: 100%;
+        background: #ffffff;
+        padding: 20px;
+        box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+        z-index: 9999;
+    }
+
+    /* показываем меню, когда JS добавил класс .active */
+    .nav.active {
+        display: flex !important;
+    }
+
+    .nav a {
+        margin: 10px 0;
+        font-size: 18px;
+        color: #324950;
+        border-bottom: 1px solid #f0f0f0;
+        padding-bottom: 5px;
+    }
+
+    /* настраиваем кнопку бургера */
+    .hamburger {
+        display: block !important;
+        font-size: 32px;
+        color: #57984C;
+        cursor: pointer;
+        z-index: 10000;
+        padding: 5px;
+    }
+}
+
+/* --- адаптив для страницы товара (768px) --- */
+@media (max-width: 768px) {
+    .product-top-row {
+        flex-direction: column !important;
+        text-align: center;
+    }
+
+    .product-info-left, 
+    .product-image-right {
+        width: 100% !important;
+    }
+
+    .main-product-img {
+        width: 100%;
+        max-width: 400px;
+        margin: 20px auto;
+    }
+
+    .divider.green {
+        margin: 15px auto 30px;
+    }
+
+    .highlight-banner {
+        justify-content: center;
+    }
+
+    .product-bottom-grid {
+        display: block !important;
+    }
+
+    .grid-col {
+        width: 100%;
+        margin-bottom: 30px;
+    }
+    
+    .info-row, .info-row.reverse {
+        flex-direction: column !important;
+        text-align: center;
+    }
+}
+
+/* --- мелкие правки для телефонов (480px) --- */
+@media (max-width: 480px) {
+    .product-title { font-size: 24px; }
+    .product-subtitle { font-size: 18px; }
+    .btn-download { width: 100%; display: block; text-align: center; }
+    
+    .icons-container {
+        justify-content: center;
+        gap: 15px;
+    }
+    .icon-item { width: 45%; }
+}
+
+
+/* --- сторінка товарів --- */
+
+@media (max-width: 1024px) {
+    .top-banner-img img {
+        width: 100%;
+        height: auto;
+    }
+
+    .info-content-wrapper {
+        flex-direction: column; 
+    }
+
+    .vertical-line {
+        display: none; 
+    }
+}
+
+@media (max-width: 768px) {
+
+    .breeding-programs {
+        display: block;
+    }
+
+    .program-card {
+        width: 100%;
+        margin-bottom: 30px;
+        padding-left: 0;
+    }
+
+
+    .products-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr; 
+        gap: 20px;
+    }
+
+    .products-grid-section h1 {
+        font-size: 24px;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .products-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .page-title {
+        font-size: 22px;
+        text-align: center;
+    }
+
+    .product-card img {
+        width: 100%;
+        height: auto;
+    }
+}
+
+
+
+/* --- Сторінка контактів --- */
+
+@media (max-width: 768px) {
+    .contact-form {
+        display: flex;
+        flex-direction: column; 
+        gap: 0;
+    }
+
+    .form-col {
+        width: 100% !important;
+    }
+
+    .contact-title {
+        font-size: 32px;
+        text-align: center;
+    }
+
+    .contact-divider {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    .captcha-row {
+        flex-direction: column; 
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .captcha-input {
+        width: 100% !important;
+    }
+
+    .btn-submit {
+        width: 100%;
+        margin-left: 0 !important;
+    }
+
+    .address-section {
+        text-align: center;
+        margin-top: 40px;
+    }
+}
+
+@media (max-width: 480px) {
+    .form-group input, 
+    .form-group select, 
+    .form-group textarea {
+        width: 100%; 
+    }
+}

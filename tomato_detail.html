@@ -2,10 +2,11 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=320, initial-scale=1.0"/> 
     <title>TAG 1002 (TAG 809) - Agridera</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
 <body class="light-page">
@@ -22,7 +23,12 @@
                     <input type="text" placeholder="Search">
                     <span class="search-icon">🔍</span>
                 </div>
-                <nav class="nav">
+
+                <div class="hamburger" id="hamburger">
+                    <i class="bi bi-list"></i>
+                </div>
+
+                <nav class="nav" id="nav-menu">
                     <a href="index.html">Home</a>
                     <a href="tomato_all.html">Company Profile</a>
                     <a href="tomato_detail.html">Products</a>
@@ -107,26 +113,16 @@
     </main>
 
     <footer class="footer">
-        <div class="container">
-            <nav class="footer-nav">
-                <a href="#">PROFILE</a>
-                <a href="#">MANAGEMENT</a>
-                <a href="#">PRODUCTS</a>
-                <a href="#">R&D</a>
-                <a href="#">LINKS</a>
-                <a href="#">SITEMAP</a>
-                <a href="#">CONTACT</a>
-            </nav>
-            <div class="socials">
-                <a href="#" class="soc-icon"><i class="bi bi-linkedin"></i></a>
-                <a href="#" class="soc-icon"><i class="bi bi-instagram"></i></a>
-                <a href="#" class="soc-icon"><i class="bi bi-youtube"></i></a>
-                <a href="#" class="soc-icon"><i class="bi bi-twitter"></i></a>
-                <a href="#" class="soc-icon"><i class="bi bi-facebook"></i></a>
-            </div>
-        </div>
-        <div class="copy">AGRIDERA SEEDS & AGRICULTURE LTD. © 2020</div>
-    </footer>
+        </footer>
+
+    <script>
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('nav-menu');
+
+        hamburger.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+    </script>
 
 </body>
 </html>
