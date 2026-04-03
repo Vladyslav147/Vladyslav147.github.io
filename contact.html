@@ -82,16 +82,16 @@
                 </div>
 
                 <div v-if="orderSubmitted" style="background: #e8f5e9; padding: 30px; border-radius: 8px; margin-bottom: 30px;">
-                    <h2 style="color: #2e7d32;">заказ успешно отправлен!</h2>
-                    <p><strong>имя:</strong> {{ contactFields.name }}</p>
-                    <p><strong>компания:</strong> {{ contactFields.company }}</p>
-                    <p><strong>должность:</strong> {{ contactFields.position }}</p>
+                    <h2 style="color: #2e7d32;">заказ успішно відправлено!</h2>
+                    <p><strong>імя:</strong> {{ contactFields.name }}</p>
+                    <p><strong>компанія:</strong> {{ contactFields.company }}</p>
+                    <p><strong>должність:</strong> {{ contactFields.position }}</p>
                     <p><strong>город:</strong> {{ contactFields.city }}</p>
                     <p><strong>страна:</strong> {{ contactFields.country }}</p>
                     <p><strong>телефон:</strong> {{ contactFields.phone }}</p>
                     <p><strong>email:</strong> {{ contactFields.email }}</p>
                     <p><strong>тип:</strong> {{ contactFields.role }}</p>
-                    <p v-if="contactFields.other_role"><strong>другое:</strong> {{ contactFields.other_role }}</p>
+                    <p v-if="contactFields.other_role"><strong>інше:</strong> {{ contactFields.other_role }}</p>
                     <p><strong>интересы:</strong> {{ contactFields.interested_in }}</p>
                 </div>
 
