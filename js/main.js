@@ -1,7 +1,6 @@
 var app = new Vue({
     el: '#app',
     data: {
-        // пункт 4-5: 
         products: [
             {id: 1, title: 'мандарин сацума', short_text: 'сладкий и без косточек', image: 'img/m1.jpg', desc: 'сорт сацума ценится за тонкую кожуру и отсутствие семян. идеально для детей.'},
             {id: 2, title: 'мандарин клементин', short_text: 'сочный гибрид', image: 'img/m2.jpg', desc: 'клементины — самые сладкие мандарины в сезоне, гибрид с апельсином.'},
@@ -9,16 +8,24 @@ var app = new Vue({
             {id: 4, title: 'мандарин минеола', short_text: 'форма колокольчика', image: 'img/m4.jpg', desc: 'необычный гибрид с легкой кислинкой и очень тонкой кожей.'},
             {id: 5, title: 'мандарин уншиу', short_text: 'классический сорт', image: 'img/m5.jpg', desc: 'традиционный новогодний мандарин, очень сочный и сладкий.'}
         ],
-        product: {}, // пункт 15: 
-        btnVisible: 0 // пункт 15: 
+        product: {}, 
+        btnVisible: 0, 
+        
+        // п. 1 и 5: добавляем массивы
+        cart: [], 
+        contactFields: { 
+            name: '', company: '', position: '', city: '',
+            country: '', phone: '', email: '', role: 'seed-producer',
+            other_role: '', interested_in: ''
+        },
+        orderSubmitted: false 
     },
     mounted: function() {
-        // пункт 18 і 26: 
         this.getProduct();
         this.checkInCart();
+        this.getCart(); // вызываем при загрузке страницы
     },
     methods: {
-        // пункт 17:
         getProduct: function() {
             var id = window.location.hash.replace('#', '');
             if (this.products && this.products.length > 0) {
@@ -29,7 +36,6 @@ var app = new Vue({
                 }
             }
         },
-        // пункт 21: 
         addToCart: function(id) {
             var cart = [];
             if (window.localStorage.getItem('cart')) {
@@ -39,9 +45,9 @@ var app = new Vue({
                 cart.push(id);
                 window.localStorage.setItem('cart', cart.join(','));
                 this.btnVisible = 1;
+                this.getCart(); 
             }
         },
-        // пункт 25: 
         checkInCart: function() {
             if (this.product && this.product.id && window.localStorage.getItem('cart')) {
                 var cart = window.localStorage.getItem('cart').split(',');
@@ -49,6 +55,45 @@ var app = new Vue({
                     this.btnVisible = 1;
                 }
             }
+        },
+        
+        // п. 1: функция getCart
+        getCart: function() {
+            var localCart = window.localStorage.getItem('cart');
+            this.cart = []; 
+            if (localCart) {
+                var ids = localCart.split(',');
+                for (var i = 0; i < ids.length; i++) {
+                    for (var j = 0; j < this.products.length; j++) {
+                        if (this.products[j].id == ids[i]) {
+                            this.cart.push(this.products[j]);
+                        }
+                    }
+                }
+            }
+        },
+        
+        // п. 3: функция removeFromCart
+        removeFromCart: function(id) {
+            this.cart = this.cart.filter(item => item.id != id);
+            
+            var ids = this.cart.map(item => item.id);
+            if (ids.length > 0) {
+                window.localStorage.setItem('cart', ids.join(','));
+            } else {
+                window.localStorage.removeItem('cart');
+            }
+            
+            if (this.product.id == id) {
+                this.btnVisible = 0;
+            }
+        },
+        
+        // п. 6: функция makeOrder
+        makeOrder: function() {
+            this.orderSubmitted = true;
+            this.cart = []; // очищаем корзину в vue
+            window.localStorage.removeItem('cart'); // очищаем localstorage
         }
     }
 });

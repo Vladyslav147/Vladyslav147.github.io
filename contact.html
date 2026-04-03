@@ -8,143 +8,188 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/responsive.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="js/main.js" defer></script>
 </head>
-<body>
+<body class="light-page">
 
-    <header class="header white-header">
-        <div class="container header-container">
-            <div class="logo">
-                <a href="index.html">
-                    <img src="img/Logo.png" alt="Agridera Logo" height="50">
-                </a>
-            </div>
-            <div class="header-right">
-                <div class="search-box">
-                    <input type="text" placeholder="Search">
-                    <span class="search-icon">🔍</span>
+    <div id="app">
+        <header class="header white-header">
+            <div class="container header-container">
+                <div class="logo">
+                    <a href="index.html">
+                        <img src="img/Logo.png" alt="Agridera Logo" height="50">
+                    </a>
                 </div>
-                
-                <div class="hamburger" id="hamburger">
-                    <i class="bi bi-list"></i>
-                </div>
+                <div class="header-right">
+                    <div class="search-box">
+                        <input type="text" placeholder="Search">
+                        <span class="search-icon">🔍</span>
+                    </div>
+                    
+                    <div class="hamburger" id="hamburger">
+                        <i class="bi bi-list"></i>
+                    </div>
 
-                <nav class="nav" id="nav-menu">
-                    <a href="index.html">Home</a>
-                    <a href="tomato_all.html">Company Profile</a>
-                    <a href="tomato_detail.html">Products</a>
-                    <a href="#">Services</a>
-                    <a href="#">R & D</a>
-                    <a href="contact.html">Contact</a>
-                </nav>
+                    <nav class="nav" id="nav-menu">
+                        <a href="index.html">Home</a>
+                        <a href="tomato_all.html">Company Profile</a>
+                        <a href="tomato_detail.html">Products</a>
+                        <a href="#">Services</a>
+                        <a href="#">R & D</a>
+                        <a href="contact.html">Contact</a>
+                    </nav>
+                </div>
             </div>
+        </header>
+
+        <div class="top-banner-img">
+            <img src="img/bg2.jpg" alt="Agridera Fields" style="width: 100%; height: auto; display: block;">
         </div>
-    </header>
 
-    <div class="top-banner-img">
-        <img src="img/bg2.jpg" alt="Agridera Fields" style="width: 100%; height: auto; display: block;">
-    </div>
+        <main class="contact-section">
+            <div class="container">
+                <h1 class="contact-title">Contact us</h1>
+                <div class="contact-divider">*****</div>
 
-    <main class="contact-section">
-        <div class="container">
-            <h1 class="contact-title">Contact us</h1>
-            <div class="contact-divider">*****</div>
-
-            <form action="#" class="contact-form">
-                <div class="form-col">
-                    <div class="form-group">
-                        <label>Name *</label>
-                        <input type="text" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Company Name</label>
-                        <input type="text">
-                    </div>
-                    <div class="form-group">
-                        <label>Position</label>
-                        <input type="text">
-                    </div>
-                    <div class="form-group">
-                        <label>City</label>
-                        <input type="text">
-                    </div>
-                    <div class="form-group">
-                        <label>Country</label>
-                        <input type="text">
-                    </div>
-                    <div class="form-group">
-                        <label>Telephone</label>
-                        <input type="tel">
-                    </div>
-                    <div class="form-group">
-                        <label>Email *</label>
-                        <input type="email" required>
+                <div v-if="cart.length > 0 && !orderSubmitted" class="cart-wrapper">
+                    <h2 class="cart-title-custom">ваш кошик</h2>
+                    <div style="overflow-x: auto;">
+                        <table class="cart-table-custom">
+                            <thead>
+                                <tr>
+                                    <th>фото</th>
+                                    <th>назва</th>
+                                    <th>описание</th>
+                                    <th>видалити</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr v-for="item in cart" :key="item.id">
+                                    <td><img :src="item.image" class="cart-img-custom" alt="product"></td>
+                                    <td><strong>{{ item.title }}</strong></td>
+                                    <td>{{ item.short_text }}</td>
+                                    <td>
+                                        <button @click="removeFromCart(item.id)" class="btn-remove-custom" title="убрать из корзины">
+                                            <i class="bi bi-trash3"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
 
-                <div class="form-col">
-                    <div class="form-group">
-                        <label>You are a</label>
-                        <select>
-                            <option value="seed-producer">seed producer</option>
-                            <option value="farmer">farmer</option>
-                            <option value="distributor">distributor</option>
-                            <option value="other">other</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label>If other, please specify</label>
-                        <input type="text">
-                    </div>
-                    <div class="form-group textarea-group">
-                        <label>You are interested in</label>
-                        <textarea></textarea>
-                    </div>
-                    <div class="form-group captcha-group">
-                        <label>Please type this code</label>
-                        <div class="captcha-row">
-                            <span class="captcha-code">7 C J 3</span>
-                            <input type="text" class="captcha-input" required>
-                            <button type="submit" class="btn-submit">Send Message</button>
+                <div v-if="orderSubmitted" style="background: #e8f5e9; padding: 30px; border-radius: 8px; margin-bottom: 30px;">
+                    <h2 style="color: #2e7d32;">заказ успешно отправлен!</h2>
+                    <p><strong>имя:</strong> {{ contactFields.name }}</p>
+                    <p><strong>компания:</strong> {{ contactFields.company }}</p>
+                    <p><strong>должность:</strong> {{ contactFields.position }}</p>
+                    <p><strong>город:</strong> {{ contactFields.city }}</p>
+                    <p><strong>страна:</strong> {{ contactFields.country }}</p>
+                    <p><strong>телефон:</strong> {{ contactFields.phone }}</p>
+                    <p><strong>email:</strong> {{ contactFields.email }}</p>
+                    <p><strong>тип:</strong> {{ contactFields.role }}</p>
+                    <p v-if="contactFields.other_role"><strong>другое:</strong> {{ contactFields.other_role }}</p>
+                    <p><strong>интересы:</strong> {{ contactFields.interested_in }}</p>
+                </div>
+
+                <form action="#" class="contact-form" @submit.prevent="makeOrder" v-if="!orderSubmitted">
+                    <div class="form-col">
+                        <div class="form-group">
+                            <label>Name *</label>
+                            <input type="text" required v-model="contactFields.name">
+                        </div>
+                        <div class="form-group">
+                            <label>Company Name</label>
+                            <input type="text" v-model="contactFields.company">
+                        </div>
+                        <div class="form-group">
+                            <label>Position</label>
+                            <input type="text" v-model="contactFields.position">
+                        </div>
+                        <div class="form-group">
+                            <label>City</label>
+                            <input type="text" v-model="contactFields.city">
+                        </div>
+                        <div class="form-group">
+                            <label>Country</label>
+                            <input type="text" v-model="contactFields.country">
+                        </div>
+                        <div class="form-group">
+                            <label>Telephone</label>
+                            <input type="tel" v-model="contactFields.phone">
+                        </div>
+                        <div class="form-group">
+                            <label>Email *</label>
+                            <input type="email" required v-model="contactFields.email">
                         </div>
                     </div>
-                </div>
-            </form>
 
-            <div class="address-section">
-                <div class="address-title">Our Address</div>
-                <div class="address-details">
-                    <p>AGRIDERA Seeds & Agriculture Ltd.</p>
-                    <p>P.O Box 103,</p>
-                    <p>Gedera 70750, Israel.</p>
-                    <p>Telephone: <span class="phone-number">+972 8 944 9222</span></p>
+                    <div class="form-col">
+                        <div class="form-group">
+                            <label>You are a</label>
+                            <select v-model="contactFields.role">
+                                <option value="seed-producer">seed producer</option>
+                                <option value="farmer">farmer</option>
+                                <option value="distributor">distributor</option>
+                                <option value="other">other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>If other, please specify</label>
+                            <input type="text" v-model="contactFields.other_role">
+                        </div>
+                        <div class="form-group textarea-group">
+                            <label>You are interested in</label>
+                            <textarea v-model="contactFields.interested_in"></textarea>
+                        </div>
+                        <div class="form-group captcha-group">
+                            <label>Please type this code</label>
+                            <div class="captcha-row">
+                                <span class="captcha-code">7 C J 3</span>
+                                <input type="text" class="captcha-input" required>
+                                <button type="submit" class="btn-submit">Send Message</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+                <div class="address-section">
+                    <div class="address-title">Our Address</div>
+                    <div class="address-details">
+                        <p>AGRIDERA Seeds & Agriculture Ltd.</p>
+                        <p>P.O Box 103,</p>
+                        <p>Gedera 70750, Israel.</p>
+                        <p>Telephone: <span class="phone-number">+972 8 944 9222</span></p>
+                    </div>
                 </div>
             </div>
-        </div>
-    </main>
+        </main>
 
-    <footer class="footer">
-        <div class="container">
-            <nav class="footer-nav">
-                <a href="#">PROFILE</a>
-                <a href="#">MANAGEMENT</a>
-                <a href="#">PRODUCTS</a>
-                <a href="#">R&D</a>
-                <a href="#">LINKS</a>
-                <a href="#">SITEMAP</a>
-                <a href="contact.html">CONTACT</a>
-            </nav>
-            <div class="socials">
-                <a href="#" class="soc-icon"><i class="bi bi-linkedin"></i></a>
-                <a href="#" class="soc-icon"><i class="bi bi-instagram"></i></a>
-                <a href="#" class="soc-icon"><i class="bi bi-youtube"></i></a>
-                <a href="#" class="soc-icon"><i class="bi bi-twitter"></i></a>
-                <a href="#" class="soc-icon"><i class="bi bi-facebook"></i></a>
+        <footer class="footer">
+            <div class="container">
+                <nav class="footer-nav">
+                    <a href="#">PROFILE</a>
+                    <a href="#">MANAGEMENT</a>
+                    <a href="#">PRODUCTS</a>
+                    <a href="#">R&D</a>
+                    <a href="#">LINKS</a>
+                    <a href="#">SITEMAP</a>
+                    <a href="contact.html">CONTACT</a>
+                </nav>
+                <div class="socials">
+                    <a href="#" class="soc-icon"><i class="bi bi-linkedin"></i></a>
+                    <a href="#" class="soc-icon"><i class="bi bi-instagram"></i></a>
+                    <a href="#" class="soc-icon"><i class="bi bi-youtube"></i></a>
+                    <a href="#" class="soc-icon"><i class="bi bi-twitter"></i></a>
+                    <a href="#" class="soc-icon"><i class="bi bi-facebook"></i></a>
+                </div>
             </div>
-        </div>
-        <div class="copy">AGRIDERA SEEDS & AGRICULTURE LTD. © 2020</div>
-    </footer>
-
-    <script>
+            <div class="copy">AGRIDERA SEEDS & AGRICULTURE LTD. © 2020</div>
+        </footer>
+    </div> <script>
         const hamburger = document.getElementById('hamburger');
         const navMenu = document.getElementById('nav-menu');
 
