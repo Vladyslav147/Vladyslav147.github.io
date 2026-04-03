@@ -11,7 +11,7 @@ var app = new Vue({
         product: {}, 
         btnVisible: 0, 
         
-        // п. 1 и 5: добавляем массивы
+
         cart: [], 
         contactFields: { 
             name: '', company: '', position: '', city: '',
@@ -23,7 +23,7 @@ var app = new Vue({
     mounted: function() {
         this.getProduct();
         this.checkInCart();
-        this.getCart(); // вызываем при загрузке страницы
+        this.getCart(); 
     },
     methods: {
         getProduct: function() {
@@ -57,7 +57,7 @@ var app = new Vue({
             }
         },
         
-        // п. 1: функция getCart
+
         getCart: function() {
             var localCart = window.localStorage.getItem('cart');
             this.cart = []; 
@@ -73,7 +73,7 @@ var app = new Vue({
             }
         },
         
-        // п. 3: функция removeFromCart
+
         removeFromCart: function(id) {
             this.cart = this.cart.filter(item => item.id != id);
             
@@ -89,11 +89,11 @@ var app = new Vue({
             }
         },
         
-        // п. 6: функция makeOrder
+
         makeOrder: function() {
             this.orderSubmitted = true;
-            this.cart = []; // очищаем корзину в vue
-            window.localStorage.removeItem('cart'); // очищаем localstorage
+            this.cart = []; 
+            window.localStorage.removeItem('cart'); 
         }
     }
 });
